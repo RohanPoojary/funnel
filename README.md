@@ -49,9 +49,9 @@ It also supports complex queries. Say for the same data.
 
 
 # Task Lists
-  - [ x ] Logical and Comparision Operations
-  - [ x ] List based Operations
-  - [ x ] Filtering based on existence of an attribute
+  - [x] Logical and Comparision Operations
+  - [x] List based Operations
+  - [x] Filtering based on existence of an attribute
   - [ ] Not Operation
   - [ ] Comparision between attributes of a struct
   - [ ] Renaming of attribute names ( Final output has to be a list of maps )
