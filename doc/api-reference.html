@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>API Reference – funnel v0.1.0</title>
+    <title>API Reference – Funnel v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-76a8ad038c.js"></script>
+    <script src="dist/sidebar_items-94a672af2e.js"></script>
     
     
     
@@ -29,13 +29,13 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Funnel.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        funnel
+        Funnel
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.0
+        v0.1.0-rc.0
       </h2>
     </div>
     
@@ -69,7 +69,7 @@
 
 
 <h1>
-  <small class="visible-xs">funnel v0.1.0</small>
+  <small class="visible-xs">Funnel v0.1.0-rc.0</small>
   API Reference
 </h1>
 
@@ -84,36 +84,53 @@
       <div class="summary-row">
   <div class="summary-signature"><a href="Funnel.html">Funnel</a></div>
   
-    <div class="summary-synopsis"><p>Documentation for Funnel module</p>
+    <div class="summary-synopsis"><p>Funnel provides a wrapper for filtering data with simplicity and efficiently.
+  It filters out list of structs or maps that satisfies the query. The Query is inspired by
+  Mongo, hence there’s a lot of similarities</p>
 </div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="Funnel.Filter.html">Funnel.Filter</a></div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature"><a href="Funnel.Parser.html">Funnel.Parser</a></div>
   
+    <div class="summary-synopsis"><p>This is an aggregate module that uses all the parsers and handles fallback value</p>
 </div>
-<div class="summary-row">
-  <div class="summary-signature"><a href="Funnel.Parser.AtomParsers.html">Funnel.Parser.AtomParsers</a></div>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="Funnel.Parser.ListParsers.html">Funnel.Parser.ListParsers</a></div>
+  <div class="summary-signature"><a href="Funnel.Parser.AtomParser.html">Funnel.Parser.AtomParser</a></div>
+  
+    <div class="summary-synopsis"><p>Handles when the value is an atom</p>
+</div>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="Funnel.Parser.LogicalParsers.html">Funnel.Parser.LogicalParsers</a></div>
+  <div class="summary-signature"><a href="Funnel.Parser.ListParser.html">Funnel.Parser.ListParser</a></div>
+  
+    <div class="summary-synopsis"><p>Handles for list comparisions</p>
+</div>
   
 </div>
 <div class="summary-row">
-  <div class="summary-signature"><a href="Funnel.Parser.PropertyParsers.html">Funnel.Parser.PropertyParsers</a></div>
+  <div class="summary-signature"><a href="Funnel.Parser.LogicalParser.html">Funnel.Parser.LogicalParser</a></div>
+  
+    <div class="summary-synopsis"><p>Handles logical operations</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature"><a href="Funnel.Parser.PropertyParser.html">Funnel.Parser.PropertyParser</a></div>
+  
+    <div class="summary-synopsis"><p>Handles property based operations</p>
+</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature"><a href="Funnel.Query.html">Funnel.Query</a></div>
+  
+    <div class="summary-synopsis"><p><a href="Funnel.Query.html#content"><code class="inline">Funnel.Query</code></a> module evaluates query against a map or struct. It evaluates every condition through
+<a href="Funnel.Parser.html"><code class="inline">Funnel.Parser</code></a> module</p>
+</div>
   
 </div>
 

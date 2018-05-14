@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Funnel.Query – funnel v0.1.0</title>
+    <title>Funnel.Query – Funnel v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-76a8ad038c.js"></script>
+    <script src="dist/sidebar_items-94a672af2e.js"></script>
     
     
     
@@ -29,13 +29,13 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Funnel.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        funnel
+        Funnel
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.0
+        v0.1.0-rc.0
       </h2>
     </div>
     
@@ -69,16 +69,229 @@
 
 
       <h1>
-        <small class="visible-xs">funnel v0.1.0</small>
+        <small class="visible-xs">Funnel v0.1.0-rc.0</small>
         Funnel.Query
         
-          <a href="https://github.com/RohanPoojary/Funnel/blob/master/lib/funnel/query.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel/query.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
         
       </h1>
 
+      
+        <section id="moduledoc">
+          <p><a href="Funnel.Query.html#content"><code class="inline">Funnel.Query</code></a> module evaluates query against a map or struct. It evaluates every condition through
+<a href="Funnel.Parser.html"><code class="inline">Funnel.Parser</code></a> module.</p>
+<h2 id="module-query-conditions" class="section-heading">
+  <a href="#module-query-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Query Conditions
+</h2>
+
+<p>  The query conditions are divided into 4 types.</p>
+<ul>
+<li><a href="#module-logical-conditions">Logical Conditions</a>
+</li>
+<li><a href="#module-atom-conditions">Atom Conditions</a>
+</li>
+<li><a href="#module-property-conditions">Property Conditions</a>
+</li>
+<li><a href="#module-list-conditions">List Conditions</a>
+</li>
+</ul>
+<h3 id="module-logical-conditions" class="section-heading">
+  <a href="#module-logical-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Logical Conditions
+</h3>
+
+<p>  These are conditions which are handled by <a href="Funnel.Parser.LogicalParser.html"><code class="inline">Funnel.Parser.LogicalParser</code></a> module.
+  The condition will be of format <code class="inline">keyword: value</code>.</p>
+<table>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left">Keyword</th><th style="text-align: left">Meaning</th>
+</tr>
+</thead>
+<tr>
+<td style="text-align: left"><code class="inline">:gt</code></td><td style="text-align: left">Greater than</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:gte</code></td><td style="text-align: left">Greater than or equal to</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:lt</code></td><td style="text-align: left">Lesser than</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:lte</code></td><td style="text-align: left">Lesser than or equal to</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:eq</code></td><td style="text-align: left">Equal to</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:neq</code></td><td style="text-align: left">Not Equal to</td>
+</tr>
+</table>
+<h3 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h3>
+
+<pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
+iex&gt; Funnel.Query.process(data, a: [gt: 10])
+true
+iex&gt; Funnel.Query.process(data, a: [lt: 15])
+false
+# Underneath, its a simple greater or lesser operator
+# Hence it also supports strings or mixed types
+iex&gt; Funnel.Query.process(data, b: [lt: &quot;Hello&quot;]) # =&gt; &quot;hello&quot; &lt; &quot;Hello&quot;
+false
+iex&gt; Funnel.Query.process(data, b: [gte: 5]) # =&gt; &quot;hello&quot; &gt;= 5
+true
+# With multiple conditions
+iex&gt; Funnel.Query.process(data, a: [lte: 20], c: [eq: [1, 2, 3]], d: [e: [gt: 20]])
+true</code></pre>
+<h3 id="module-atom-conditions" class="section-heading">
+  <a href="#module-atom-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Atom Conditions
+</h3>
+
+<p>  These are conditions which are handled by <a href="Funnel.Parser.AtomParser.html"><code class="inline">Funnel.Parser.AtomParser</code></a> module.
+  The condition will be of format <code class="inline">attribute: keyword</code>.</p>
+<table>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left">Keyword</th><th style="text-align: left">Meaning</th>
+</tr>
+</thead>
+<tr>
+<td style="text-align: left"><code class="inline">:exists</code></td><td style="text-align: left">True if attribute exists</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:notexists</code></td><td style="text-align: left">True if attribute does not exist</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:integer</code></td><td style="text-align: left">True if the attrbute is an <code class="inline">integer</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:float</code></td><td style="text-align: left">True if the attrbute is a <code class="inline">float</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:number</code></td><td style="text-align: left">True if the attrbute is a <code class="inline">number</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:string</code></td><td style="text-align: left">True if the attrbute is a <code class="inline">string</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:list</code></td><td style="text-align: left">True if the attrbute is a <code class="inline">list</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:map</code></td><td style="text-align: left">True if the attrbute is a <code class="inline">map</code></td>
+</tr>
+</table>
+<h3 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h3>
+
+<pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
+iex&gt; Funnel.Query.process(data, a: :exists)
+true
+iex&gt; Funnel.Query.process(data, d: [e: :notexists])
+false
+iex&gt; Funnel.Query.process(data, b: :string)
+true</code></pre>
+<h3 id="module-property-conditions" class="section-heading">
+  <a href="#module-property-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Property Conditions
+</h3>
+
+<p>  These are conditions which are handled by <a href="Funnel.Parser.PropertyParser.html"><code class="inline">Funnel.Parser.PropertyParser</code></a> module.
+  The condition will be of format <code class="inline">keyword: value | condition</code>.</p>
+<p>  This also handles a <a href="https://hexdocs.pm/elixir/Regex.html"><code class="inline">Regex</code></a> value. It returns <code class="inline">true</code> if the attribute’s value matches with regex</p>
+<table>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left">Keyword</th><th style="text-align: left">Meaning</th>
+</tr>
+</thead>
+<tr>
+<td style="text-align: left"><code class="inline">:len</code></td><td style="text-align: left">Length of the attribute should be equal to value, if condition is passed then evaluation is aginst its length</td>
+</tr>
+</table>
+<h3 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h3>
+
+<pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
+iex&gt; Funnel.Query.process(data, c: [len: 3])
+true
+# Length against a number doesn&#39;t exist.
+iex&gt; Funnel.Query.process(data, a: [len: 10])
+false
+# With Regex
+iex&gt; Funnel.Query.process(data, b: ~r&#39;\w+ll\w+&#39;)
+true
+# Internally a number is converted to a string, Hence regex works even against a number
+iex&gt; Funnel.Query.process(data, d: [e: ~r&#39;\d+&#39;])
+true</code></pre>
+<h3 id="module-list-conditions" class="section-heading">
+  <a href="#module-list-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  List Conditions
+</h3>
+
+<p>  These are conditions which are handled by <a href="Funnel.Parser.ListParser.html"><code class="inline">Funnel.Parser.ListParser</code></a> module.
+  The condition will be of format <code class="inline">keyword: value</code>. In this condition either attribute’s value
+  or keyword’s value has to be a list</p>
+<table>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left">Keyword</th><th style="text-align: left">Meaning</th>
+</tr>
+</thead>
+<tr>
+<td style="text-align: left"><code class="inline">:in</code></td><td style="text-align: left">True if value of attribute is in keyword’s value</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:nin</code></td><td style="text-align: left">True if value of attribute is not in keyword’s value</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:has</code></td><td style="text-align: left">True if value of attribute has keyword’s value</td>
+</tr>
+<tr>
+<td style="text-align: left"><code class="inline">:nha</code></td><td style="text-align: left">True if value of attribute  does not have keyword’s value</td>
+</tr>
+</table>
+<h3 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h3>
+
+<pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
+iex&gt; Funnel.Query.process(data, a: [in: [10, 20, 30]])
+true
+iex&gt; Funnel.Query.process(data, c: [has: 2])
+true
+iex&gt; Funnel.Query.process(data, d: [e: [nin: [10, 20, 30]]])
+false</code></pre>
+
+        </section>
       
 
       
@@ -101,6 +314,9 @@
   <div class="summary-signature">
     <a href="#process/2">process(document, list)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Evaluates the struct against a query and returns <code class="inline">true</code> or <code class="inline">false</code></p>
+</div>
   
 </div>
 
@@ -133,16 +349,36 @@
     </a>
     <span class="signature">process(document, list)</span>
     
-      <a href="https://github.com/RohanPoojary/Funnel/blob/master/lib/funnel/query.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel/query.ex#L147" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
     
     
     
+      <div class="specs">
+        
+          <pre>process(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">struct</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    
+    <p>Evaluates the struct against a query and returns <code class="inline">true</code> or <code class="inline">false</code>.</p>
+<h2 id="process/2-examples" class="section-heading">
+  <a href="#process/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; alias Funnel.Query
+Funnel.Query
+iex&gt; document = %{a: 100, b: 20, c: -1, meta: %{creator: &quot;max&quot;}}
+%{a: 100, b: 20, c: -1, meta: %{creator: &quot;max&quot;}}
+iex&gt; Query.process(document, a: :exists, meta: [creator: &quot;max&quot;])
+true
+iex&gt; Query.process(document, a: :exists, c: [gt: 0])
+false</code></pre>
+
   </section>
 </div>
 

@@ -1,4 +1,9 @@
-defmodule Funnel.Parser.LogicalParsers do
+defmodule Funnel.Parser.LogicalParser do
+  @moduledoc ~S"""
+  Handles logical operations
+
+  """
+
   defmacro __using__(_opts) do
     quote do
       def parse(value, [{:gt, compare} | rest]) do
@@ -21,7 +26,7 @@ defmodule Funnel.Parser.LogicalParsers do
         value == compare and parse(value, rest)
       end
 
-      def parse(value, [{:ne, compare} | rest]) do
+      def parse(value, [{:neq, compare} | rest]) do
         value != compare and parse(value, rest)
       end
     end

@@ -1,4 +1,9 @@
-defmodule Funnel.Parser.ListParsers do
+defmodule Funnel.Parser.ListParser do
+  @moduledoc ~S"""
+  Handles for list comparisions
+
+  """
+
   defmacro __using__(_opts) do
     quote do
       def parse(value, [{:in, compare} | rest]) when is_list(compare) do

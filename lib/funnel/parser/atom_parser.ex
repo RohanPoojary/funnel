@@ -1,4 +1,9 @@
-defmodule Funnel.Parser.AtomParsers do
+defmodule Funnel.Parser.AtomParser do
+  @moduledoc ~S"""
+  Handles when the value is an atom.
+
+  """
+
   defmacro __using__(_opts) do
     quote do
       def parse(value, :exists) do

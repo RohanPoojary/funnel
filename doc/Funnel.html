@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Funnel – funnel v0.1.0</title>
+    <title>Funnel – Funnel v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-76a8ad038c.js"></script>
+    <script src="dist/sidebar_items-94a672af2e.js"></script>
     
     
     
@@ -29,13 +29,13 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Funnel.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        funnel
+        Funnel
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.0
+        v0.1.0-rc.0
       </h2>
     </div>
     
@@ -69,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">funnel v0.1.0</small>
+        <small class="visible-xs">Funnel v0.1.0-rc.0</small>
         Funnel
         
-          <a href="https://github.com/RohanPoojary/Funnel/blob/master/lib/funnel.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -81,7 +81,87 @@
 
       
         <section id="moduledoc">
-          <p>Documentation for Funnel module</p>
+          <p>  Funnel provides a wrapper for filtering data with simplicity and efficiently.
+  It filters out list of structs or maps that satisfies the query. The Query is inspired by
+  Mongo, hence there’s a lot of similarities.</p>
+<h2 id="module-installation" class="section-heading">
+  <a href="#module-installation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Installation
+</h2>
+
+<p>  Make sure elixir &gt;= 1.6, then add following line to your <code class="inline">mix.exs</code> file</p>
+<pre><code class="elixir">  def deps do
+    ...
+    [:funnel, &quot;~&gt; 0.1.0-rc.0&quot;]
+  end</code></pre>
+<p>  Run <code class="inline">mix deps.get</code> to install the package</p>
+<h2 id="module-query" class="section-heading">
+  <a href="#module-query" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Query
+</h2>
+
+<p>  The examples below cover queries on exact, lesser than, greater than and nested comparision .
+  To get in depth idea on query parameters that the module supports, please visit
+  <a href="Funnel.Query.html"><code class="inline">Funnel.Query</code></a> module.</p>
+<h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<p>  In the examples below, list of maps are used; But it can be list of structs or mix of both structs and maps.</p>
+<pre><code class="iex elixir">iex&gt; data = [
+...&gt; %{id: 1, name: &quot;Bob&quot;, action: &quot;talk&quot;, age: 30},
+...&gt; %{id: 3, name: &quot;Helen&quot;, action: &quot;talk&quot;, age: 30},
+...&gt; %{id: 1, name: &quot;Rocky&quot;,  action: &quot;bark&quot;, age: 10},
+...&gt; %{id: 3, name: &quot;Rocky&quot;,  action: &quot;meow&quot;, age: 6},
+...&gt; %{id: 10, age: 3},
+...&gt; %{id: 1, type: &quot;car&quot;, age: 12}
+...&gt; ]
+[
+  %{action: &quot;talk&quot;, age: 30, id: 1, name: &quot;Bob&quot;},
+  %{action: &quot;talk&quot;, age: 30, id: 3, name: &quot;Helen&quot;},
+  %{action: &quot;bark&quot;, age: 10, id: 1, name: &quot;Rocky&quot;},
+  %{action: &quot;meow&quot;, age: 6, id: 3, name: &quot;Rocky&quot;},
+  %{age: 3, id: 10},
+  %{age: 12, id: 1, type: &quot;car&quot;}
+]
+## Filters data with id = 1
+iex&gt; Funnel.filter(data, id: 1)
+[
+  %{age: 12, id: 1, type: &quot;car&quot;},
+  %{action: &quot;bark&quot;, age: 10, id: 1, name: &quot;Rocky&quot;},
+  %{action: &quot;talk&quot;, age: 30, id: 1, name: &quot;Bob&quot;}
+]
+## Filters data with id &gt; 1 and has :action attribute
+iex&gt; Funnel.filter(data, id: [gt: 1], action: :exists)
+[
+  %{action: &quot;meow&quot;, age: 6, id: 3, name: &quot;Rocky&quot;},
+  %{action: &quot;talk&quot;, age: 30, id: 3, name: &quot;Helen&quot;}
+]</code></pre>
+<p>The module also supports nested structs.</p>
+<h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; data = [
+...&gt; %{id: 1, name: &quot;Bob&quot;, action: &quot;talk&quot;, data: %{age: 30, country: &quot;USA&quot;} },
+...&gt; %{id: 3, name: &quot;Helen&quot;, action: &quot;talk&quot;, data: %{age: 26, country: &quot;USA&quot;}},
+...&gt; %{id: 3, name: &quot;William&quot;, action: &quot;talk&quot;, data: %{age: 32, country: &quot;France&quot;}},
+...&gt; %{id: 1, name: &quot;Rocky&quot;,  action: &quot;bark&quot;, age: 10},
+...&gt; ]
+[
+  %{id: 1, name: &quot;Bob&quot;, action: &quot;talk&quot;, data: %{age: 30, country: &quot;USA&quot;} },
+  %{id: 3, name: &quot;Helen&quot;, action: &quot;talk&quot;, data: %{age: 26, country: &quot;USA&quot;}},
+  %{id: 3, name: &quot;William&quot;, action: &quot;talk&quot;, data: %{age: 32, country: &quot;France&quot;}},
+  %{id: 1, name: &quot;Rocky&quot;,  action: &quot;bark&quot;, age: 10},
+]
+## Filters data with action = &quot;talk&quot; and age attribute in data &gt;= 30
+iex&gt; Funnel.filter(data, action: &quot;talk&quot;, data: [age: [gte: 30]])
+[
+  %{id: 3, name: &quot;William&quot;, action: &quot;talk&quot;, data: %{age: 32, country: &quot;France&quot;}},
+  %{id: 1, name: &quot;Bob&quot;, action: &quot;talk&quot;, data: %{age: 30, country: &quot;USA&quot;} }
+]</code></pre>
 
         </section>
       
@@ -104,20 +184,11 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#filter/2">filter(data, query)</a>
+    <a href="#filter/3">filter(data, query, option \\ :default)</a>
   </div>
   
     <div class="summary-synopsis"><p>This method filters the data that satisfies the query. It takes in two arguments <code class="inline">data</code>
 and <code class="inline">query</code>. The results will be in reverse order</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#filter/3">filter(data, query, atom)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>This method negates the results of the query</p>
 </div>
   
 </div>
@@ -141,60 +212,19 @@ and <code class="inline">query</code>. The results will be in reverse order</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="filter/2">
+          <div class="detail" id="filter/3">
   
   
-  <div class="detail-header">
-    <a href="#filter/2" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <span class="signature">filter(data, query)</span>
-    
-      <a href="https://github.com/RohanPoojary/Funnel/blob/master/lib/funnel.ex#L25" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-    
-    
-    
-      <div class="specs">
-        
-          <pre>filter(<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()</pre>
-        
-      </div>
-    
-  </div>
-  <section class="docstring">
-    <p>This method filters the data that satisfies the query. It takes in two arguments <code class="inline">data</code>
-and <code class="inline">query</code>. The results will be in reverse order.</p>
-<h2 id="filter/2-examples" class="section-heading">
-  <a href="#filter/2-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Examples
-</h2>
-
-<pre><code class="iex elixir">iex&gt; data = [%{a: 1, b: 2, c: 3}, %{a: 2, b: 3, c: -1}, %{a: 1, b: -3, c: 5}]
-iex&gt; Funnel.filter(data, [a: 1])
-[%{a: 1, b: -3, c: 5}, %{a: 1, b: 2, c: 3}]
-iex&gt; Funnel.filter(data, [b: [gt: 1], c: [lte: 3]])
-[%{a: 2, b: 3, c: -1}, %{a: 1, b: 2, c: 3}]
-iex&gt; # As the argument is keyword list, the brackets can be dropped
-iex&gt; Funnel.filter(data, b: [gt: 1], c: [lte: 3])
-[%{a: 2, b: 3, c: -1}, %{a: 1, b: 2, c: 3}]</code></pre>
-
-  </section>
-</div>
-<div class="detail" id="filter/3">
-  
+    <span id="filter/2"></span>
   
   <div class="detail-header">
     <a href="#filter/3" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <span class="signature">filter(data, query, atom)</span>
+    <span class="signature">filter(data, query, option \\ :default)</span>
     
-      <a href="https://github.com/RohanPoojary/Funnel/blob/master/lib/funnel.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel.ex#L108" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -209,13 +239,23 @@ iex&gt; Funnel.filter(data, b: [gt: 1], c: [lte: 3])
     
   </div>
   <section class="docstring">
-    <p>This method negates the results of the query..</p>
+    <p>This method filters the data that satisfies the query. It takes in two arguments <code class="inline">data</code>
+and <code class="inline">query</code>. The results will be in reverse order.</p>
+<p>By default the option is <code class="inline">:default</code>, you can pass <code class="inline">:negate</code> to negate the filtered data.</p>
 <h2 id="filter/3-examples" class="section-heading">
   <a href="#filter/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
 <pre><code class="iex elixir">iex&gt; data = [%{a: 1, b: 2, c: 3}, %{a: 2, b: 3, c: -1}, %{a: 1, b: -3, c: 5}]
+iex&gt; Funnel.filter(data, [a: 1])
+[%{a: 1, b: -3, c: 5}, %{a: 1, b: 2, c: 3}]
+iex&gt; Funnel.filter(data, [b: [gt: 1], c: [lte: 3]])
+[%{a: 2, b: 3, c: -1}, %{a: 1, b: 2, c: 3}]
+# As the argument is keyword list, the brackets can be dropped
+iex&gt; Funnel.filter(data, b: [gt: 1], c: [lte: 3])
+[%{a: 2, b: 3, c: -1}, %{a: 1, b: 2, c: 3}]
+# To negate the data, add :negate as the third argument
 iex&gt; Funnel.filter(data,[a: [lt: 2]], :negate)
 [%{a: 2, b: 3, c: -1}]</code></pre>
 
