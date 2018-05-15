@@ -7,7 +7,7 @@ defmodule Funnel.MixProject do
     [
       app: :funnel,
       version: @version,
-      elixir: "~> 1.6",
+      elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
 
@@ -61,7 +61,7 @@ defmodule Funnel.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.17", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.17", only: :docs}
     ]
   end
 end
