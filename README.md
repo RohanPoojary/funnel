@@ -5,7 +5,7 @@ Membrane provides a wrapper for filtering data with simplicity but also supports
 complex queries if necessary.
 
 It filters out list of structs or maps that satisfies the query. The Query is inspired by
-Mongo, hence there's a lot of similarities. To learn more please visit our documentation http://hexdocs.pm/RohanPoojary/Membrane .
+Mongo, hence there's a lot of similarities. To learn more please visit our documentation https://hexdocs.pm/membrane/Membrane.html .
 
 # Installation
 To install just add the module to your mix file.
