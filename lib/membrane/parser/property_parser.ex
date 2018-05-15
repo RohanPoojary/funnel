@@ -1,4 +1,4 @@
-defmodule Funnel.Parser.PropertyParser do
+defmodule Membrane.Parser.PropertyParser do
   @moduledoc ~S"""
   It provides `parse` functions that handles property based operations like length
   and Regex matches.
@@ -10,12 +10,12 @@ defmodule Funnel.Parser.PropertyParser do
   ## Examples
 
       iex> defmodule Parser do
-      ...>  use Funnel.Parser.PropertyParser
+      ...>  use Membrane.Parser.PropertyParser
       ...> end
       iex> Parser.parse('abc123', ~r'^\d.*') # Regex matches a string that starts with digit
       false
       iex> Parser.parse(1.45, gt: 1)
-      ** (FunctionClauseError) no function clause matching in Funnel.Parser.PropertyParserTest.Parser.parse/2
+      ** (FunctionClauseError) no function clause matching in Membrane.Parser.PropertyParserTest.Parser.parse/2
 
   """
 

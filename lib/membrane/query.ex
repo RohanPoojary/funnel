@@ -1,7 +1,7 @@
-defmodule Funnel.Query do
+defmodule Membrane.Query do
   @moduledoc ~S"""
-  `Funnel.Query` module evaluates query against a map or struct. It evaluates every condition through
-  `Funnel.Parser` module.
+  `Membrane.Query` module evaluates query against a map or struct. It evaluates every condition through
+  `Membrane.Parser` module.
 
   ## Query Conditions
     The query conditions are divided into 4 types.
@@ -12,7 +12,7 @@ defmodule Funnel.Query do
     * [List Conditions](#module-list-conditions)
 
   ### Logical Conditions
-    These are conditions which are handled by `Funnel.Parser.LogicalParser` module.
+    These are conditions which are handled by `Membrane.Parser.LogicalParser` module.
     The condition will be of format `keyword: value`.
 
     | Keyword | Meaning |
@@ -27,22 +27,22 @@ defmodule Funnel.Query do
   ### Examples
 
       iex> data = %{a: 20, b: "hello", c: [1, 2, 3], d: %{e: 30}}
-      iex> Funnel.Query.process(data, a: [gt: 10])
+      iex> Membrane.Query.process(data, a: [gt: 10])
       true
-      iex> Funnel.Query.process(data, a: [lt: 15])
+      iex> Membrane.Query.process(data, a: [lt: 15])
       false
       # Underneath, its a simple greater or lesser operator
       # Hence it also supports strings or mixed types
-      iex> Funnel.Query.process(data, b: [lt: "Hello"]) # => "hello" < "Hello"
+      iex> Membrane.Query.process(data, b: [lt: "Hello"]) # => "hello" < "Hello"
       false
-      iex> Funnel.Query.process(data, b: [gte: 5]) # => "hello" >= 5
+      iex> Membrane.Query.process(data, b: [gte: 5]) # => "hello" >= 5
       true
       # With multiple conditions
-      iex> Funnel.Query.process(data, a: [lte: 20], c: [eq: [1, 2, 3]], d: [e: [gt: 20]])
+      iex> Membrane.Query.process(data, a: [lte: 20], c: [eq: [1, 2, 3]], d: [e: [gt: 20]])
       true
 
   ### Atom Conditions
-    These are conditions which are handled by `Funnel.Parser.AtomParser` module.
+    These are conditions which are handled by `Membrane.Parser.AtomParser` module.
     The condition will be of format `attribute: keyword`.
 
     | Keyword | Meaning |
@@ -60,15 +60,15 @@ defmodule Funnel.Query do
   ### Examples
 
       iex> data = %{a: 20, b: "hello", c: [1, 2, 3], d: %{e: 30}}
-      iex> Funnel.Query.process(data, a: :exists)
+      iex> Membrane.Query.process(data, a: :exists)
       true
-      iex> Funnel.Query.process(data, d: [e: :notexists])
+      iex> Membrane.Query.process(data, d: [e: :notexists])
       false
-      iex> Funnel.Query.process(data, b: :string)
+      iex> Membrane.Query.process(data, b: :string)
       true
   
   ### Property Conditions
-    These are conditions which are handled by `Funnel.Parser.PropertyParser` module.
+    These are conditions which are handled by `Membrane.Parser.PropertyParser` module.
     The condition will be of format `keyword: value | condition`.
 
     This also handles a `Regex` value. It returns `true` if the attribute's value matches with regex
@@ -81,20 +81,20 @@ defmodule Funnel.Query do
   ### Examples
 
       iex> data = %{a: 20, b: "hello", c: [1, 2, 3], d: %{e: 30}}
-      iex> Funnel.Query.process(data, c: [len: 3])
+      iex> Membrane.Query.process(data, c: [len: 3])
       true
       # Length against a number doesn't exist.
-      iex> Funnel.Query.process(data, a: [len: 10])
+      iex> Membrane.Query.process(data, a: [len: 10])
       false
       # With Regex
-      iex> Funnel.Query.process(data, b: ~r'\w+ll\w+')
+      iex> Membrane.Query.process(data, b: ~r'\w+ll\w+')
       true
       # Internally a number is converted to a string, Hence regex works even against a number
-      iex> Funnel.Query.process(data, d: [e: ~r'\d+'])
+      iex> Membrane.Query.process(data, d: [e: ~r'\d+'])
       true
   
   ### List Conditions
-    These are conditions which are handled by `Funnel.Parser.ListParser` module.
+    These are conditions which are handled by `Membrane.Parser.ListParser` module.
     The condition will be of format `keyword: value`. In this condition either attribute's value
     or keyword's value has to be a list
 
@@ -109,23 +109,23 @@ defmodule Funnel.Query do
   ### Examples
 
       iex> data = %{a: 20, b: "hello", c: [1, 2, 3], d: %{e: 30}}
-      iex> Funnel.Query.process(data, a: [in: [10, 20, 30]])
+      iex> Membrane.Query.process(data, a: [in: [10, 20, 30]])
       true
-      iex> Funnel.Query.process(data, c: [has: 2])
+      iex> Membrane.Query.process(data, c: [has: 2])
       true
-      iex> Funnel.Query.process(data, d: [e: [nin: [10, 20, 30]]])
+      iex> Membrane.Query.process(data, d: [e: [nin: [10, 20, 30]]])
       false
 
   """
-  alias Funnel.Parser
+  alias Membrane.Parser
 
   @doc ~S"""
   Evaluates the struct against a query and returns `true` or `false`.
 
   ## Examples
       
-      iex> alias Funnel.Query
-      Funnel.Query
+      iex> alias Membrane.Query
+      Membrane.Query
       iex> document = %{a: 100, b: 20, c: -1, meta: %{creator: "max"}}
       %{a: 100, b: 20, c: -1, meta: %{creator: "max"}}
       iex> Query.process(document, a: :exists, meta: [creator: "max"])

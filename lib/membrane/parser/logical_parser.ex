@@ -1,4 +1,4 @@
-defmodule Funnel.Parser.LogicalParser do
+defmodule Membrane.Parser.LogicalParser do
   @moduledoc ~S"""
   It provides `parse` functions that handles logical operations. To use this module a fallback
   method `parse(_value, [])` has to created.
@@ -7,7 +7,7 @@ defmodule Funnel.Parser.LogicalParser do
   ## Examples
 
       iex> defmodule Parser do
-      ...>  use Funnel.Parser.LogicalParser
+      ...>  use Membrane.Parser.LogicalParser
       ...>  # A fallback parse has to be created.
       ...>  def parse(_value, []) do
       ...>    true
@@ -18,7 +18,7 @@ defmodule Funnel.Parser.LogicalParser do
       iex> Parser.parse(20, [eq: 2])
       false
       iex> Parser.parse(1.45, in: [1, 2, 3])
-      ** (FunctionClauseError) no function clause matching in Funnel.Parser.LogicalParserTest.Parser.parse/2
+      ** (FunctionClauseError) no function clause matching in Membrane.Parser.LogicalParserTest.Parser.parse/2
 
   """
 

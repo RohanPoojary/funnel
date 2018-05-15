@@ -1,4 +1,4 @@
-defmodule Funnel.Parser.AtomParser do
+defmodule Membrane.Parser.AtomParser do
   @moduledoc ~S"""
   It provides `parse` functions that handle `atom` parameters.
 
@@ -6,14 +6,14 @@ defmodule Funnel.Parser.AtomParser do
   ## Examples
 
       iex> defmodule Parser do
-      ...>  use Funnel.Parser.AtomParser
+      ...>  use Membrane.Parser.AtomParser
       ...> end
       iex> Parser.parse("Hello", :number)
       false
       iex> Parser.parse(1.45, :number)
       true
       iex> Parser.parse(1.45, [gt: 1])
-      ** (FunctionClauseError) no function clause matching in Funnel.Parser.AtomParserTest.Parser.parse/2
+      ** (FunctionClauseError) no function clause matching in Membrane.Parser.AtomParserTest.Parser.parse/2
 
   """
 

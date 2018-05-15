@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Funnel.Parser.LogicalParser – Funnel v0.1.0-rc.0</title>
+    <title>Membrane.Parser.LogicalParser – Membrane v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-f55a193934.js"></script>
+    <script src="dist/sidebar_items-dc0988a17c.js"></script>
     
     
     
@@ -29,10 +29,10 @@
 <section class="sidebar">
 
   
-  <a href="Funnel.html" class="sidebar-projectLink">
+  <a href="Membrane.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        Funnel
+        Membrane
       </h1>
       <h2 class="sidebar-projectVersion">
         v0.1.0-rc.0
@@ -69,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">Funnel v0.1.0-rc.0</small>
-        Funnel.Parser.LogicalParser
+        <small class="visible-xs">Membrane v0.1.0-rc.0</small>
+        Membrane.Parser.LogicalParser
         
-          <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel/parser/logical_parser.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/RohanPoojary/Membrane/blob/v0.1.0-rc.0/lib/membrane/parser/logical_parser.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -89,7 +89,7 @@ method <code class="inline">parse(_value, [])</code> has to created.</p>
 </h2>
 
 <pre><code class="iex elixir">iex&gt; defmodule Parser do
-...&gt;  use Funnel.Parser.LogicalParser
+...&gt;  use Membrane.Parser.LogicalParser
 ...&gt;  # A fallback parse has to be created.
 ...&gt;  def parse(_value, []) do
 ...&gt;    true
@@ -100,7 +100,7 @@ true
 iex&gt; Parser.parse(20, [eq: 2])
 false
 iex&gt; Parser.parse(1.45, in: [1, 2, 3])
-** (FunctionClauseError) no function clause matching in Funnel.Parser.LogicalParserTest.Parser.parse/2</code></pre>
+** (FunctionClauseError) no function clause matching in Membrane.Parser.LogicalParserTest.Parser.parse/2</code></pre>
 
         </section>
       

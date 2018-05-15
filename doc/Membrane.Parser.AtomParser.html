@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Funnel.Parser.ListParser – Funnel v0.1.0-rc.0</title>
+    <title>Membrane.Parser.AtomParser – Membrane v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-f55a193934.js"></script>
+    <script src="dist/sidebar_items-dc0988a17c.js"></script>
     
     
     
@@ -29,10 +29,10 @@
 <section class="sidebar">
 
   
-  <a href="Funnel.html" class="sidebar-projectLink">
+  <a href="Membrane.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        Funnel
+        Membrane
       </h1>
       <h2 class="sidebar-projectVersion">
         v0.1.0-rc.0
@@ -69,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">Funnel v0.1.0-rc.0</small>
-        Funnel.Parser.ListParser
+        <small class="visible-xs">Membrane v0.1.0-rc.0</small>
+        Membrane.Parser.AtomParser
         
-          <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel/parser/list_parser.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/RohanPoojary/Membrane/blob/v0.1.0-rc.0/lib/membrane/parser/atom_parser.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -81,26 +81,21 @@
 
       
         <section id="moduledoc">
-          <p>It provides <code class="inline">parse</code> functions that handles list operations. To use this module a fallback
-method <code class="inline">parse(_value, [])</code> has to created.</p>
+          <p>It provides <code class="inline">parse</code> functions that handle <code class="inline">atom</code> parameters.</p>
 <h2 id="module-examples" class="section-heading">
   <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
 <pre><code class="iex elixir">iex&gt; defmodule Parser do
-...&gt;  use Funnel.Parser.ListParser
-...&gt;  # A fallback parse has to be created.
-...&gt;  def parse(_value, []) do
-...&gt;    true
-...&gt;  end
+...&gt;  use Membrane.Parser.AtomParser
 ...&gt; end
-iex&gt; Parser.parse(10, [in: [10, 20, 30]])
-true
-iex&gt; Parser.parse([1, 2, 3], [nha: 2])
+iex&gt; Parser.parse(&quot;Hello&quot;, :number)
 false
+iex&gt; Parser.parse(1.45, :number)
+true
 iex&gt; Parser.parse(1.45, [gt: 1])
-** (FunctionClauseError) no function clause matching in Funnel.Parser.ListParserTest.Parser.parse/2</code></pre>
+** (FunctionClauseError) no function clause matching in Membrane.Parser.AtomParserTest.Parser.parse/2</code></pre>
 
         </section>
       

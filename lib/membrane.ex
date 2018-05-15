@@ -1,6 +1,6 @@
-defmodule Funnel do
+defmodule Membrane do
   @moduledoc ~S"""
-    Funnel provides a wrapper for filtering data with simplicity and efficiently.
+    Membrane provides a wrapper for filtering data with simplicity and efficiently.
     It filters out list of structs or maps that satisfies the query. The Query is inspired by
     Mongo, hence there's a lot of similarities.
 
@@ -10,7 +10,7 @@ defmodule Funnel do
 
         def deps do
           ...
-          [:funnel, "~> 0.1.0-rc.0"]
+          [:membrane, "~> 0.1.0-rc.0"]
         end
 
     Run `mix deps.get` to install the package
@@ -19,7 +19,7 @@ defmodule Funnel do
         
     The examples below cover queries on exact, lesser than, greater than and nested comparision .
     To get in depth idea on query parameters that the module supports, please visit
-    `Funnel.Query` module.
+    `Membrane.Query` module.
 
   ## Examples
 
@@ -43,14 +43,14 @@ defmodule Funnel do
         %{age: 12, id: 1, type: "car"}
       ]
       ## Filters data with id = 1
-      iex> Funnel.filter(data, id: 1)
+      iex> Membrane.filter(data, id: 1)
       [
         %{age: 12, id: 1, type: "car"},
         %{action: "bark", age: 10, id: 1, name: "Rocky"},
         %{action: "talk", age: 30, id: 1, name: "Bob"}
       ]
       ## Filters data with id > 1 and has :action attribute
-      iex> Funnel.filter(data, id: [gt: 1], action: :exists)
+      iex> Membrane.filter(data, id: [gt: 1], action: :exists)
       [
         %{action: "meow", age: 6, id: 3, name: "Rocky"},
         %{action: "talk", age: 30, id: 3, name: "Helen"}
@@ -73,7 +73,7 @@ defmodule Funnel do
         %{id: 1, name: "Rocky",  action: "bark", age: 10},
       ]
       ## Filters data with action = "talk" and age attribute in data >= 30
-      iex> Funnel.filter(data, action: "talk", data: [age: [gte: 30]])
+      iex> Membrane.filter(data, action: "talk", data: [age: [gte: 30]])
       [
         %{id: 3, name: "William", action: "talk", data: %{age: 32, country: "France"}},
         %{id: 1, name: "Bob", action: "talk", data: %{age: 30, country: "USA"} }
@@ -81,7 +81,7 @@ defmodule Funnel do
 
   """
 
-  alias Funnel.Query
+  alias Membrane.Query
 
   @doc """
   This method filters the data that satisfies the query. It takes in two arguments `data`
@@ -92,15 +92,15 @@ defmodule Funnel do
   ## Examples
 
       iex> data = [%{a: 1, b: 2, c: 3}, %{a: 2, b: 3, c: -1}, %{a: 1, b: -3, c: 5}]
-      iex> Funnel.filter(data, [a: 1])
+      iex> Membrane.filter(data, [a: 1])
       [%{a: 1, b: -3, c: 5}, %{a: 1, b: 2, c: 3}]
-      iex> Funnel.filter(data, [b: [gt: 1], c: [lte: 3]])
+      iex> Membrane.filter(data, [b: [gt: 1], c: [lte: 3]])
       [%{a: 2, b: 3, c: -1}, %{a: 1, b: 2, c: 3}]
       # As the argument is keyword list, the brackets can be dropped
-      iex> Funnel.filter(data, b: [gt: 1], c: [lte: 3])
+      iex> Membrane.filter(data, b: [gt: 1], c: [lte: 3])
       [%{a: 2, b: 3, c: -1}, %{a: 1, b: 2, c: 3}]
       # To negate the data, add :negate as the third argument
-      iex> Funnel.filter(data,[a: [lt: 2]], :negate)
+      iex> Membrane.filter(data,[a: [lt: 2]], :negate)
       [%{a: 2, b: 3, c: -1}]
 
   """

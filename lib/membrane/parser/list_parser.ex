@@ -1,4 +1,4 @@
-defmodule Funnel.Parser.ListParser do
+defmodule Membrane.Parser.ListParser do
   @moduledoc ~S"""
   It provides `parse` functions that handles list operations. To use this module a fallback
   method `parse(_value, [])` has to created.
@@ -6,7 +6,7 @@ defmodule Funnel.Parser.ListParser do
   ## Examples
 
       iex> defmodule Parser do
-      ...>  use Funnel.Parser.ListParser
+      ...>  use Membrane.Parser.ListParser
       ...>  # A fallback parse has to be created.
       ...>  def parse(_value, []) do
       ...>    true
@@ -17,7 +17,7 @@ defmodule Funnel.Parser.ListParser do
       iex> Parser.parse([1, 2, 3], [nha: 2])
       false
       iex> Parser.parse(1.45, [gt: 1])
-      ** (FunctionClauseError) no function clause matching in Funnel.Parser.ListParserTest.Parser.parse/2
+      ** (FunctionClauseError) no function clause matching in Membrane.Parser.ListParserTest.Parser.parse/2
 
   """
 

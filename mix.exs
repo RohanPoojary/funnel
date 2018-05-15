@@ -1,11 +1,11 @@
-defmodule Funnel.MixProject do
+defmodule Membrane.MixProject do
   use Mix.Project
 
   @version "0.1.0-rc.0"
 
   def project do
     [
-      app: :funnel,
+      app: :membrane,
       version: @version,
       elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
@@ -15,7 +15,7 @@ defmodule Funnel.MixProject do
       package: package(),
 
       # Docs
-      name: "Funnel",
+      name: "Membrane",
       docs: docs()
     ]
   end
@@ -24,28 +24,28 @@ defmodule Funnel.MixProject do
     [
       maintainers: ["Rohan Poojary"],
       licenses: ["MIT"],
-      links: %{"Github"=> "http://hexdocs.pm/RohanPoojary/Funnel"},
+      links: %{"Github"=> "http://hexdocs.pm/RohanPoojary/Membrane"},
       files: ~w(.formatter.exs mix.exs README.md  lib test)
     ]
   end
 
   defp docs do
     [
-      main: "Funnel",
+      main: "Membrane",
       source_ref: "v#{@version}",
-      source_url: "https://github.com/RohanPoojary/Funnel",
+      source_url: "https://github.com/RohanPoojary/Membrane",
       extras: ["README.md"],
       groups_for_modules: [
-        # Funnel,
+        # Membrane,
         "Query": [
-          Funnel.Query
+          Membrane.Query
         ],
         "Parsers": [
-          Funnel.Parser,
-          Funnel.Parser.AtomParser,
-          Funnel.Parser.ListParser,
-          Funnel.Parser.LogicalParser,
-          Funnel.Parser.PropertyParser
+          Membrane.Parser,
+          Membrane.Parser.AtomParser,
+          Membrane.Parser.ListParser,
+          Membrane.Parser.LogicalParser,
+          Membrane.Parser.PropertyParser
         ]
       ]
     ]

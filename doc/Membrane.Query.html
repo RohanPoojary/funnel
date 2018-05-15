@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Funnel.Query – Funnel v0.1.0-rc.0</title>
+    <title>Membrane.Query – Membrane v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-f55a193934.js"></script>
+    <script src="dist/sidebar_items-dc0988a17c.js"></script>
     
     
     
@@ -29,10 +29,10 @@
 <section class="sidebar">
 
   
-  <a href="Funnel.html" class="sidebar-projectLink">
+  <a href="Membrane.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
-        Funnel
+        Membrane
       </h1>
       <h2 class="sidebar-projectVersion">
         v0.1.0-rc.0
@@ -69,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">Funnel v0.1.0-rc.0</small>
-        Funnel.Query
+        <small class="visible-xs">Membrane v0.1.0-rc.0</small>
+        Membrane.Query
         
-          <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel/query.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/RohanPoojary/Membrane/blob/v0.1.0-rc.0/lib/membrane/query.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -81,8 +81,8 @@
 
       
         <section id="moduledoc">
-          <p><a href="Funnel.Query.html#content"><code class="inline">Funnel.Query</code></a> module evaluates query against a map or struct. It evaluates every condition through
-<a href="Funnel.Parser.html"><code class="inline">Funnel.Parser</code></a> module.</p>
+          <p><a href="Membrane.Query.html#content"><code class="inline">Membrane.Query</code></a> module evaluates query against a map or struct. It evaluates every condition through
+<a href="Membrane.Parser.html"><code class="inline">Membrane.Parser</code></a> module.</p>
 <h2 id="module-query-conditions" class="section-heading">
   <a href="#module-query-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Query Conditions
@@ -104,7 +104,7 @@
   Logical Conditions
 </h3>
 
-<p>  These are conditions which are handled by <a href="Funnel.Parser.LogicalParser.html"><code class="inline">Funnel.Parser.LogicalParser</code></a> module.
+<p>  These are conditions which are handled by <a href="Membrane.Parser.LogicalParser.html"><code class="inline">Membrane.Parser.LogicalParser</code></a> module.
   The condition will be of format <code class="inline">keyword: value</code>.</p>
 <table>
 <colgroup>
@@ -141,25 +141,25 @@
 </h3>
 
 <pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
-iex&gt; Funnel.Query.process(data, a: [gt: 10])
+iex&gt; Membrane.Query.process(data, a: [gt: 10])
 true
-iex&gt; Funnel.Query.process(data, a: [lt: 15])
+iex&gt; Membrane.Query.process(data, a: [lt: 15])
 false
 # Underneath, its a simple greater or lesser operator
 # Hence it also supports strings or mixed types
-iex&gt; Funnel.Query.process(data, b: [lt: &quot;Hello&quot;]) # =&gt; &quot;hello&quot; &lt; &quot;Hello&quot;
+iex&gt; Membrane.Query.process(data, b: [lt: &quot;Hello&quot;]) # =&gt; &quot;hello&quot; &lt; &quot;Hello&quot;
 false
-iex&gt; Funnel.Query.process(data, b: [gte: 5]) # =&gt; &quot;hello&quot; &gt;= 5
+iex&gt; Membrane.Query.process(data, b: [gte: 5]) # =&gt; &quot;hello&quot; &gt;= 5
 true
 # With multiple conditions
-iex&gt; Funnel.Query.process(data, a: [lte: 20], c: [eq: [1, 2, 3]], d: [e: [gt: 20]])
+iex&gt; Membrane.Query.process(data, a: [lte: 20], c: [eq: [1, 2, 3]], d: [e: [gt: 20]])
 true</code></pre>
 <h3 id="module-atom-conditions" class="section-heading">
   <a href="#module-atom-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Atom Conditions
 </h3>
 
-<p>  These are conditions which are handled by <a href="Funnel.Parser.AtomParser.html"><code class="inline">Funnel.Parser.AtomParser</code></a> module.
+<p>  These are conditions which are handled by <a href="Membrane.Parser.AtomParser.html"><code class="inline">Membrane.Parser.AtomParser</code></a> module.
   The condition will be of format <code class="inline">attribute: keyword</code>.</p>
 <table>
 <colgroup>
@@ -202,18 +202,18 @@ true</code></pre>
 </h3>
 
 <pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
-iex&gt; Funnel.Query.process(data, a: :exists)
+iex&gt; Membrane.Query.process(data, a: :exists)
 true
-iex&gt; Funnel.Query.process(data, d: [e: :notexists])
+iex&gt; Membrane.Query.process(data, d: [e: :notexists])
 false
-iex&gt; Funnel.Query.process(data, b: :string)
+iex&gt; Membrane.Query.process(data, b: :string)
 true</code></pre>
 <h3 id="module-property-conditions" class="section-heading">
   <a href="#module-property-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Property Conditions
 </h3>
 
-<p>  These are conditions which are handled by <a href="Funnel.Parser.PropertyParser.html"><code class="inline">Funnel.Parser.PropertyParser</code></a> module.
+<p>  These are conditions which are handled by <a href="Membrane.Parser.PropertyParser.html"><code class="inline">Membrane.Parser.PropertyParser</code></a> module.
   The condition will be of format <code class="inline">keyword: value | condition</code>.</p>
 <p>  This also handles a <a href="https://hexdocs.pm/elixir/Regex.html"><code class="inline">Regex</code></a> value. It returns <code class="inline">true</code> if the attribute’s value matches with regex</p>
 <table>
@@ -236,23 +236,23 @@ true</code></pre>
 </h3>
 
 <pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
-iex&gt; Funnel.Query.process(data, c: [len: 3])
+iex&gt; Membrane.Query.process(data, c: [len: 3])
 true
 # Length against a number doesn&#39;t exist.
-iex&gt; Funnel.Query.process(data, a: [len: 10])
+iex&gt; Membrane.Query.process(data, a: [len: 10])
 false
 # With Regex
-iex&gt; Funnel.Query.process(data, b: ~r&#39;\w+ll\w+&#39;)
+iex&gt; Membrane.Query.process(data, b: ~r&#39;\w+ll\w+&#39;)
 true
 # Internally a number is converted to a string, Hence regex works even against a number
-iex&gt; Funnel.Query.process(data, d: [e: ~r&#39;\d+&#39;])
+iex&gt; Membrane.Query.process(data, d: [e: ~r&#39;\d+&#39;])
 true</code></pre>
 <h3 id="module-list-conditions" class="section-heading">
   <a href="#module-list-conditions" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   List Conditions
 </h3>
 
-<p>  These are conditions which are handled by <a href="Funnel.Parser.ListParser.html"><code class="inline">Funnel.Parser.ListParser</code></a> module.
+<p>  These are conditions which are handled by <a href="Membrane.Parser.ListParser.html"><code class="inline">Membrane.Parser.ListParser</code></a> module.
   The condition will be of format <code class="inline">keyword: value</code>. In this condition either attribute’s value
   or keyword’s value has to be a list</p>
 <table>
@@ -284,11 +284,11 @@ true</code></pre>
 </h3>
 
 <pre><code class="iex elixir">iex&gt; data = %{a: 20, b: &quot;hello&quot;, c: [1, 2, 3], d: %{e: 30}}
-iex&gt; Funnel.Query.process(data, a: [in: [10, 20, 30]])
+iex&gt; Membrane.Query.process(data, a: [in: [10, 20, 30]])
 true
-iex&gt; Funnel.Query.process(data, c: [has: 2])
+iex&gt; Membrane.Query.process(data, c: [has: 2])
 true
-iex&gt; Funnel.Query.process(data, d: [e: [nin: [10, 20, 30]]])
+iex&gt; Membrane.Query.process(data, d: [e: [nin: [10, 20, 30]]])
 false</code></pre>
 
         </section>
@@ -349,7 +349,7 @@ false</code></pre>
     </a>
     <span class="signature">process(document, list)</span>
     
-      <a href="https://github.com/RohanPoojary/Funnel/blob/v0.1.0-rc.0/lib/funnel/query.ex#L147" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/RohanPoojary/Membrane/blob/v0.1.0-rc.0/lib/membrane/query.ex#L147" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -370,8 +370,8 @@ false</code></pre>
   Examples
 </h2>
 
-<pre><code class="iex elixir">iex&gt; alias Funnel.Query
-Funnel.Query
+<pre><code class="iex elixir">iex&gt; alias Membrane.Query
+Membrane.Query
 iex&gt; document = %{a: 100, b: 20, c: -1, meta: %{creator: &quot;max&quot;}}
 %{a: 100, b: 20, c: -1, meta: %{creator: &quot;max&quot;}}
 iex&gt; Query.process(document, a: :exists, meta: [creator: &quot;max&quot;])
