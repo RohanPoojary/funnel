@@ -63,4 +63,4 @@ It also supports complex queries. Say for the same data.
 Its a new project so please free to contribute. Reporting bugs will also help.
 
 # License
-The source code is released under MIT License. Check the [License](https://github.com/RohanPoojary/funnel/blob/master/LICENSE) file for more information
+The source code is released under MIT License. Check the [License](https://github.com/RohanPoojary/membrane/blob/master/LICENSE) file for more information

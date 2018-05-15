@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :funnel, key: :value
+#     config :membrane, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:funnel, :key)
+#     Application.get_env(:membrane, :key)
 #
 # You can also configure a 3rd-party app:
 #
