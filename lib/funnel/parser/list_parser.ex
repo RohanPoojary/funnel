@@ -1,6 +1,23 @@
 defmodule Funnel.Parser.ListParser do
   @moduledoc ~S"""
-  Handles for list comparisions
+  It provides `parse` functions that handles list operations. To use this module a fallback
+  method `parse(_value, [])` has to created.
+
+  ## Examples
+
+      iex> defmodule Parser do
+      ...>  use Funnel.Parser.ListParser
+      ...>  # A fallback parse has to be created.
+      ...>  def parse(_value, []) do
+      ...>    true
+      ...>  end
+      ...> end
+      iex> Parser.parse(10, [in: [10, 20, 30]])
+      true
+      iex> Parser.parse([1, 2, 3], [nha: 2])
+      false
+      iex> Parser.parse(1.45, [gt: 1])
+      ** (FunctionClauseError) no function clause matching in Funnel.Parser.ListParserTest.Parser.parse/2
 
   """
 

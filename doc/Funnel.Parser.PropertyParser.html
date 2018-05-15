@@ -8,7 +8,7 @@
     <title>Funnel.Parser.PropertyParser – Funnel v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-94a672af2e.js"></script>
+    <script src="dist/sidebar_items-f55a193934.js"></script>
     
     
     
@@ -81,7 +81,22 @@
 
       
         <section id="moduledoc">
-          <p>Handles property based operations</p>
+          <p>It provides <code class="inline">parse</code> functions that handles property based operations like length
+and Regex matches.</p>
+<p>This a special parser where the value is passed on to next parser. Hence only parsers
+for regular expressions work, rest need other parsers to be imported.</p>
+<h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; defmodule Parser do
+...&gt;  use Funnel.Parser.PropertyParser
+...&gt; end
+iex&gt; Parser.parse(&#39;abc123&#39;, ~r&#39;^\d.*&#39;) # Regex matches a string that starts with digit
+false
+iex&gt; Parser.parse(1.45, gt: 1)
+** (FunctionClauseError) no function clause matching in Funnel.Parser.PropertyParserTest.Parser.parse/2</code></pre>
 
         </section>
       

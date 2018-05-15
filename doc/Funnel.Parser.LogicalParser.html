@@ -8,7 +8,7 @@
     <title>Funnel.Parser.LogicalParser – Funnel v0.1.0-rc.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
-    <script src="dist/sidebar_items-94a672af2e.js"></script>
+    <script src="dist/sidebar_items-f55a193934.js"></script>
     
     
     
@@ -81,7 +81,26 @@
 
       
         <section id="moduledoc">
-          <p>Handles logical operations</p>
+          <p>It provides <code class="inline">parse</code> functions that handles logical operations. To use this module a fallback
+method <code class="inline">parse(_value, [])</code> has to created.</p>
+<h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; defmodule Parser do
+...&gt;  use Funnel.Parser.LogicalParser
+...&gt;  # A fallback parse has to be created.
+...&gt;  def parse(_value, []) do
+...&gt;    true
+...&gt;  end
+...&gt; end
+iex&gt; Parser.parse(10, [gte: 8])
+true
+iex&gt; Parser.parse(20, [eq: 2])
+false
+iex&gt; Parser.parse(1.45, in: [1, 2, 3])
+** (FunctionClauseError) no function clause matching in Funnel.Parser.LogicalParserTest.Parser.parse/2</code></pre>
 
         </section>
       

@@ -1,6 +1,21 @@
 defmodule Funnel.Parser.PropertyParser do
   @moduledoc ~S"""
-  Handles property based operations
+  It provides `parse` functions that handles property based operations like length
+  and Regex matches.
+
+  This a special parser where the value is passed on to next parser. Hence only parsers
+  for regular expressions work when imported, rest need other parsers to be imported.
+
+
+  ## Examples
+
+      iex> defmodule Parser do
+      ...>  use Funnel.Parser.PropertyParser
+      ...> end
+      iex> Parser.parse('abc123', ~r'^\d.*') # Regex matches a string that starts with digit
+      false
+      iex> Parser.parse(1.45, gt: 1)
+      ** (FunctionClauseError) no function clause matching in Funnel.Parser.PropertyParserTest.Parser.parse/2
 
   """
 

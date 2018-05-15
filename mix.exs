@@ -42,10 +42,10 @@ defmodule Funnel.MixProject do
         ],
         "Parsers": [
           Funnel.Parser,
-          Funnel.Parser.AtomParsers,
-          Funnel.Parser.ListParsers,
-          Funnel.Parser.LogicalParsers,
-          Funnel.Parser.PropertyParsers
+          Funnel.Parser.AtomParser,
+          Funnel.Parser.ListParser,
+          Funnel.Parser.LogicalParser,
+          Funnel.Parser.PropertyParser
         ]
       ]
     ]

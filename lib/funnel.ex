@@ -111,7 +111,6 @@ defmodule Funnel do
       :negate -> process(data, query, [], true)
       _ -> raise("Invalid option: #{option}, It should be either `:default` or `:negate`")
     end
-    
   end
 
   defp process([h | t], args, list, negate) do
