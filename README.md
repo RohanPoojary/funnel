@@ -1,5 +1,6 @@
 # Membrane
 [![Build Status](https://travis-ci.org/RohanPoojary/membrane.svg?branch=master)](https://travis-ci.org/RohanPoojary/membrane)
+[![Inline docs](http://inch-ci.org/github/RohanPoojary/membrane.svg)](http://inch-ci.org/github/RohanPoojary/membrane)
 
 Membrane provides a wrapper for filtering data with simplicity but also supports
 complex queries if necessary.
