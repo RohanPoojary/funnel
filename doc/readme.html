@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Membrane – Membrane v0.1.0-rc.0</title>
+    <title>Membrane – Membrane v0.1.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
     <script src="dist/sidebar_items-dc0988a17c.js"></script>
@@ -35,7 +35,7 @@
         Membrane
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.0-rc.0
+        v0.1.0
       </h2>
     </div>
     
@@ -69,17 +69,18 @@
 
 
 <h1>Membrane</h1>
-<p><a href="https://travis-ci.org/RohanPoojary/membrane"><img src="https://travis-ci.org/RohanPoojary/membrane.svg?branch=master" alt="Build Status"/></a></p>
-<p>Membrane provides a wrapper for filtering data with simplicity but also supports
-complex queries if necessary.</p>
-<p>It filters out list of structs or maps that satisfies the query. The Query is inspired by
+<p><a href="https://travis-ci.org/RohanPoojary/membrane"><img src="https://travis-ci.org/RohanPoojary/membrane.svg?branch=master" alt="Build Status"/></a>
+<a href="http://inch-ci.org/github/RohanPoojary/membrane"><img src="http://inch-ci.org/github/RohanPoojary/membrane.svg" alt="Inline docs"/></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/></a></p>
+<p>Membrane provides a wrapper for filtering data with simplicity and efficiently.</p>
+<p>It filters out list of structs or maps that satisfy the query. The Query is inspired by
 Mongo, hence there’s a lot of similarities. To learn more please visit our documentation https://hexdocs.pm/membrane/Membrane.html .</p>
 <h1>Installation</h1>
 <p>To install just add the module to your mix file.</p>
 <pre><code class="elixir">def deps do
   [
     ...
-    {:membrane, &quot;~&gt; 0.1.0-rc.0&quot;}
+    {:membrane, &quot;~&gt; 0.1.0&quot;}
   ]
 end</code></pre>
 <h1>Examples</h1>
@@ -123,11 +124,11 @@ iex&gt; Membrane.filter(data, age: [gt: 8], action: :exists)
 </li>
 <li>[ ] Renaming of attribute names ( Final output has to be a list of maps )
 </li>
-<li>[ ] Filtering map with query keywords as keys.
+<li>[ ] Filtering struct which has query keywords as attributes.
 </li>
 </ul>
 <h1>Contributing</h1>
-<p>Its a new project so please free to contribute. Reporting bugs will also help.</p>
+<p>It’s a new project so please feel free to contribute. Reporting bugs will also help.</p>
 <h1>License</h1>
 <p>The source code is released under MIT License. Check the <a href="https://github.com/RohanPoojary/membrane/blob/master/LICENSE">License</a> file for more information</p>
 

@@ -10,7 +10,7 @@ defmodule Membrane do
 
         def deps do
           ...
-          [:membrane, "~> 0.1.0-rc.0"]
+          {:membrane, "~> 0.1.0"}
         end
 
     Run `mix deps.get` to install the package

@@ -9,6 +9,21 @@ defmodule Membrane.Parser do
     * `Membrane.Parser.LogicalParser`
     * `Membrane.Parser.ListParser`
 
+    It is not advisable to explicitly import individual parsers. This is because fallback
+    functions has to be added. So you can directly use `Funnel.Query` module
+    or use `Membrane.Parser` module as required.
+
+  ## Examples
+
+      iex> alias Membrane.Parser
+      Membrane.Parser
+      iex> Parser.parse(10, gt: 3)
+      true
+      iex> Parser.parse("hello", len: 6)
+      false
+      iex> Parser.parse([1, 2, 3], has: 3)
+      true
+
   """
 
   use Membrane.Parser.AtomParser

@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.3">
-    <title>Membrane.Parser – Membrane v0.1.0-rc.0</title>
+    <title>Membrane.Parser – Membrane v0.1.0</title>
     <link rel="stylesheet" href="dist/app-480ffdc169.css" />
     
     <script src="dist/sidebar_items-dc0988a17c.js"></script>
@@ -35,7 +35,7 @@
         Membrane
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.1.0-rc.0
+        v0.1.0
       </h2>
     </div>
     
@@ -69,10 +69,10 @@
 
 
       <h1>
-        <small class="visible-xs">Membrane v0.1.0-rc.0</small>
+        <small class="visible-xs">Membrane v0.1.0</small>
         Membrane.Parser
         
-          <a href="https://github.com/RohanPoojary/Membrane/blob/v0.1.0-rc.0/lib/membrane/parser.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/RohanPoojary/Membrane/blob/v0.1.0/lib/membrane/parser.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -90,9 +90,25 @@
 </li>
 <li><a href="Membrane.Parser.LogicalParser.html"><code class="inline">Membrane.Parser.LogicalParser</code></a>
 </li>
-<li><a href="Membrane.Parser.ListParser.html"><code class="inline">Membrane.Parser.ListParser</code></a>
+<li><p><a href="Membrane.Parser.ListParser.html"><code class="inline">Membrane.Parser.ListParser</code></a></p>
+<p>  It is not advisable to explicitly import individual parsers. This is because fallback
+  functions has to be added. So you can directly use <code class="inline">Funnel.Query</code> module
+  or use <a href="Membrane.Parser.html#content"><code class="inline">Membrane.Parser</code></a> module as required.</p>
 </li>
 </ul>
+<h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="iex elixir">iex&gt; alias Membrane.Parser
+Membrane.Parser
+iex&gt; Parser.parse(10, gt: 3)
+true
+iex&gt; Parser.parse(&quot;hello&quot;, len: 6)
+false
+iex&gt; Parser.parse([1, 2, 3], has: 3)
+true</code></pre>
 
         </section>
       

@@ -1,11 +1,12 @@
 # Membrane
 [![Build Status](https://travis-ci.org/RohanPoojary/membrane.svg?branch=master)](https://travis-ci.org/RohanPoojary/membrane)
 [![Inline docs](http://inch-ci.org/github/RohanPoojary/membrane.svg)](http://inch-ci.org/github/RohanPoojary/membrane)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Membrane provides a wrapper for filtering data with simplicity but also supports
-complex queries if necessary.
 
-It filters out list of structs or maps that satisfies the query. The Query is inspired by
+Membrane provides a wrapper for filtering data with simplicity and efficiently.
+
+It filters out list of structs or maps that satisfy the query. The Query is inspired by
 Mongo, hence there's a lot of similarities. To learn more please visit our documentation https://hexdocs.pm/membrane/Membrane.html .
 
 # Installation
@@ -14,7 +15,7 @@ To install just add the module to your mix file.
     def deps do
       [
         ...
-        {:membrane, "~> 0.1.0-rc.0"}
+        {:membrane, "~> 0.1.0"}
       ]
     end
 
@@ -58,10 +59,10 @@ It also supports complex queries. Say for the same data.
   - [ ] Not Operation
   - [ ] Comparision between attributes of a struct
   - [ ] Renaming of attribute names ( Final output has to be a list of maps )
-  - [ ] Filtering map with query keywords as keys.
+  - [ ] Filtering struct which has query keywords as attributes.
 
 # Contributing
-Its a new project so please free to contribute. Reporting bugs will also help.
+It's a new project so please feel free to contribute. Reporting bugs will also help.
 
 # License
 The source code is released under MIT License. Check the [License](https://github.com/RohanPoojary/membrane/blob/master/LICENSE) file for more information
